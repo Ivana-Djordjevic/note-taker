@@ -1,25 +1,27 @@
-const titleInput = document.querySelector('.note-title');
-const textInput = document.querySelector('.note-textarea');
 const saveNote = document.querySelector('.save-note');
-const newNote = document.querySelector('.new-note');
+const inputField = document.querySelector('.input-value');
 
 console.log('linked')
 
-//verifies if there is user input to reveal the save button
-//does not work
-function verifyInput () {
-    const titleValue = titleInput.innerHTML
-    const textValue = textInput.innerHTML
-    console.log('text value ' + typeof textValue)
-    console.log('what it shows for textValue innerHTML: ' + textValue)
+function removeClass() {
+    saveNote.classList.remove('save-note'); 
+}
 
-    if (titleValue.trim().length > 0 && textValue.trim().length > 0) {
-        saveNote.classList.remove('save-note'); // works independently
-    }
-};
+function deleteValues() {
+    const titleValue = document.querySelector('.note-title');
+    const textValue = document.querySelector('.note-textarea');
+    
+    titleValue.value = '';
+    textValue.value = '';
+}
 
-verifyInput();
+// verifies if there is user input to reveal the save button
+// how to add conditional statements to prevent user from saving blank notes
+// how to add a default title in case they dont have a title
+inputField.addEventListener('input', removeClass)
 
-newNote.addEventListener('click', () => console.log('clicked new')) // works
+// empties the input field allowing user to save a new Notes
+newNote.addEventListener('click', deleteValues)
+
+
 saveNote.addEventListener('click', () => console.log('clicked save')) // works
-
