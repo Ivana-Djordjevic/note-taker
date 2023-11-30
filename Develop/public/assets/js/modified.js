@@ -1,9 +1,15 @@
+console.log('js linked successfully')
+
+const newNote = document.querySelector('.new-note');
+
 let noteTitle;
 let noteText;
 let saveNoteBtn;
 let newNoteBtn;
 let noteList;
 
+//please explain why this is necessary
+// since both htmls have links to this file
 if (window.location.pathname === '/notes') {
   noteTitle = document.querySelector('.note-title');
   noteText = document.querySelector('.note-textarea');
@@ -50,10 +56,12 @@ const deleteNote = (id) =>
     },
   });
 
+  // i don't really understand this function
 const renderActiveNote = () => {
   hide(saveNoteBtn);
 
-  if (activeNote.id) {
+  //what is this conditional statement saying, if what is true?
+  if (activeNote.id) { // for the backend 
     noteTitle.setAttribute('readonly', true);
     noteText.setAttribute('readonly', true);
     noteTitle.value = activeNote.title;
@@ -66,11 +74,15 @@ const renderActiveNote = () => {
   }
 };
 
+//this event listener not coming through
+// not sure why 
 const handleNoteSave = () => {
+  console.log('clicked save button')
   const newNote = {
     title: noteTitle.value,
     text: noteText.value,
   };
+  console.log(newNote)
   saveNote(newNote).then(() => {
     getAndRenderNotes();
     renderActiveNote();
@@ -83,8 +95,10 @@ const handleNoteDelete = (e) => {
   e.stopPropagation();
 
   const note = e.target;
+  // i also the don't understand the use of the .id here
   const noteId = JSON.parse(note.parentElement.getAttribute('data-note')).id;
 
+  //same here
   if (activeNote.id === noteId) {
     activeNote = {};
   }
@@ -96,18 +110,28 @@ const handleNoteDelete = (e) => {
 };
 
 // Sets the activeNote and displays it
+// i also dont understand this function 
+// event listener in delete code below
+// also where is it getting that attribute when it was never set 
+// it sounds like they want whatever saved note that gets clicked on to be displayed
 const handleNoteView = (e) => {
-  e.preventDefault();
+  e.preventDefault(); // there is also no form elemens for this so why use prevent default
   activeNote = JSON.parse(e.target.parentElement.getAttribute('data-note'));
   renderActiveNote();
 };
 
 // Sets the activeNote to and empty object and allows the user to enter a new note
+//event listener also not working in this one 
+// not sure why 
 const handleNewNoteView = (e) => {
+  console.log('clicked new note button')
   activeNote = {};
+  console.log(activeNote)
   renderActiveNote();
 };
 
+// when i was working on it on my own ABC person told to use an event listerner for input so that it functions even after the page is loaded
+// why use the 'keyup' event rather than the 'input' event
 const handleRenderSaveBtn = () => {
   if (!noteTitle.value.trim() || !noteText.value.trim()) {
     hide(saveNoteBtn);
@@ -126,6 +150,8 @@ const renderNoteList = async (notes) => {
   let noteListItems = [];
 
   // Returns HTML element with or without a delete button
+  //i dont understand the parameters of this functionns
+  // i also don't understand why the delete button is supposedly optional??
   const createLi = (text, delBtn = true) => {
     const liEl = document.createElement('li');
     liEl.classList.add('list-group-item');
@@ -181,3 +207,5 @@ if (window.location.pathname === '/notes') {
 }
 
 getAndRenderNotes();
+
+
