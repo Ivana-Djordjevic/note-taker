@@ -1,8 +1,10 @@
 const express = require('express');
-const path = require('path');
-const dbJson = require('./db/db.json');
-const exp = require('constants');
 const fs = require('fs/promises');
+const path = require('path');
+const { v4: uuidv4 } = require('uuid');
+
+const dbJson = require('./db/db.json');
+const exp = require('constants'); //not sure where this came from
 
 const app = express();
 
@@ -17,10 +19,16 @@ app.get('/api/notes', (req, res) => {
 });
 
 app.post('/api/notes', async (req, res) => {
-  console.log(req.body)
+  console.log(req.body);
   const payload = req.body;
+  const {title, text} = payload;
+  const newInput = {
+    title, 
+    text,
+    id: uuidv4()
+  }
   const notes = await fs.readFile('./db/db.json', 'utf-8')
-  const newNotes = [...JSON.parse(notes), payload]
+  const newNotes = [...JSON.parse(notes), newInput]
 
   await fs.writeFile('./db/db.json', JSON.stringify(newNotes))
   res.json(newNotes)
