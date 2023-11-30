@@ -65,8 +65,8 @@ __________________________________________________________
 The following HTML routes should be created:
 
 * `GET *` should return the `index.html` file.
---> shouldn't that be for the 404?
-why use the * for the home page/??
+  --> shouldn't that be for the 404?
+  why use the * for the home page/??
 
 ## Bonus
 
