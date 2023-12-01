@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 
 const api = require('./routes/api');
+const { logger } = require('./middleware/logger');
 
 const app = express();
 
@@ -9,9 +10,9 @@ const PORT = 8080;
 
 app.use(express.static('public'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: true}));
+app.use(express.urlencoded({ extended: true}))
 
-
+app.use(logger);
 
 //API route
 app.use('/api', api);
