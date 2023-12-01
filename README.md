@@ -20,7 +20,6 @@ I WANT to be able to write and save notes
 SO THAT I can organize my thoughts and keep track of tasks I need to complete
 ```
 
-
 ### Acceptance Criteria*
 
 ```
@@ -60,13 +59,6 @@ This application is covered under: MIT License.
 *[UCD readme file](https://git.bootcampcontent.com/University-of-California---Davis/UCD-VIRT-FSF-PT-09-2023-U-LOLC/-/blob/main/11-Express/02-Challenge/README.md)
 
 __________________________________________________________
-## Getting Started
-
-The following HTML routes should be created:
-
-* `GET *` should return the `index.html` file.
-  --> shouldn't that be for the 404?
-  why use the * for the home page/??
 
 ## Bonus
 

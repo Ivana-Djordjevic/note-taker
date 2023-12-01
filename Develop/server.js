@@ -12,10 +12,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true}));
 
 
-// GET Route for homepage
-app.get('/', (req, res) =>
-  res.sendFile(path.join(__dirname, '/public/index.html'))
-);
 
 //API route
 app.use('/api', api);
@@ -25,11 +21,9 @@ app.get('/notes', (req, res) =>
 res.sendFile(path.join(__dirname, '/public/notes.html'))
 );
 
-// get route for invalid path
-app.get('*', (req, res) => {
-  res.status(404).send(`<h1> Error 404 ^_^ </h1>`);
-}
- 
+// GET Route for homepage
+app.get('*', (req, res) =>
+  res.sendFile(path.join(__dirname, '/public/index.html'))
 );
 
 app.listen(PORT, () =>

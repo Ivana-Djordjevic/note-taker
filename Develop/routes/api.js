@@ -10,38 +10,38 @@ api.get('/notes', (req, res) => {
   });
   
 api.post('/notes', async (req, res) => {
-    
-    try {
-      console.log(req.body);
-      const payload = req.body;
-      const {title, text} = payload;
-      const newInput = {
-        title, 
-        text,
-        id: uuidv4()
-      }
-      const notes = await fs.readFile('../db/db.json', 'utf-8');
-      const newNotes = [...JSON.parse(notes), newInput];
-    
-      await fs.writeFile('./db/db.json', JSON.stringify(newNotes))
-      res.json(newNotes)
-    } catch(err) {
-      res.status(500).json({error: 'u_u something went wrong'})
+
+  try {
+    const payload = req.body;
+    const {title, text} = payload;
+    const newInput = {
+      title, 
+      text,
+      id: uuidv4()
     }
-  });
+
+    const notes = await fs.readFile('./db/db.json', 'utf-8');
   
+    const newNotes = [...JSON.parse(notes), newInput];
+
+    await fs.writeFile('./db/db.json', JSON.stringify(newNotes))
+    res.json(newNotes)
+  } catch(err) {
+    res.status(500).json({error: 'u_u something went wrong'})
+  }
+});
+
 api.delete('/notes/:id', async (req, res) => {
   
     try {
-      const noteId = parseInt(req.params.id); // why do this? (convert to number)
-      const notes = await fs.readFile('./db/db.json', 'utf-8');
-      const noteTotDelete = notes.find(el => el.noteId === noteId);
-      const index = notes.indexOf(noteTotDelete);
+      const noteId = req.params.id; 
+
+      const notes = JSON.parse(await fs.readFile('./db/db.json', 'utf-8'));
+
+      const updatedNotes = notes.filter(obj => obj.id !== noteId);
     
-      notes.splice(index, 1);
-    
-      await fs.writeFile('./db/db.json', JSON.stringify(notes))
-      res.json(notes)
+      await fs.writeFile('./db/db.json', JSON.stringify(updatedNotes))
+      res.json(updatedNotes)
     } catch(err) {
       res.status(500).json({error: 'u_u something went wrong'})
     }
