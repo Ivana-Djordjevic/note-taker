@@ -41,15 +41,19 @@ THEN I am presented with empty fields to enter a new note title and the note’s
 While the requirements have been met, i would like to point out some issues:
 - when opening the 'notes' page, the placeholder for the text does not show 
 - the delete button does not work on the front end (you can delete notes on the backend as i have made an httpp delete method for it)
-both of these are issues with the starter code 
+- both of these are issues with the starter code 
 
 [deployed link](https://note-takerrrr-36143520f64a.herokuapp.com/)
 
 Screenshots:
-Home Page:
-Note Page:
-Creating New Note:
-New Note Saved:
+Home Page:<img width="985" alt="homepage" src="https://github.com/Ivana-Djordjevic/note-taker/assets/127266659/3fea36b9-e9f2-44bb-8f39-1a51e5b9e5fa">
+
+Note Page:<img width="988" alt="notes-page" src="https://github.com/Ivana-Djordjevic/note-taker/assets/127266659/f620e70f-84bf-41f0-8eba-b2de75f84dde">
+
+Creating New Note:<img width="988" alt="insert-new-note" src="https://github.com/Ivana-Djordjevic/note-taker/assets/127266659/e4f21ba6-73ac-460b-bbf3-ed015b45e8b2">
+
+New Note Saved:<img width="989" alt="new-note-saved" src="https://github.com/Ivana-Djordjevic/note-taker/assets/127266659/54c0348b-26e2-4503-937a-3188405786e1">
+
 
 ## Installation
 
