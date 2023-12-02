@@ -1,8 +1,8 @@
 const api = require('express').Router();
 
 const fs = require('fs/promises');
+const path = require('path');
 const { v4: uuidv4 } = require('uuid');
-const path = require("path")
 
 api.get('/notes', async (req, res) => {
   const notes = JSON.parse(await fs.readFile(path.join(__dirname, '../db/db.json'), 'utf-8'));
@@ -12,8 +12,7 @@ api.get('/notes', async (req, res) => {
 api.post('/notes', async (req, res) => {
 
   try {
-    const payload = req.body;
-    const {title, text} = payload;
+    const {title, text} = req.body;
     const newInput = {
       title, 
       text,
