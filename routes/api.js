@@ -2,11 +2,11 @@ const api = require('express').Router();
 
 const fs = require('fs/promises');
 const { v4: uuidv4 } = require('uuid');
+const path = require("path")
 
-const dbJson = require('../db/db.json');
-
-api.get('/notes', (req, res) => {
-    res.json(dbJson)
+api.get('/notes', async (req, res) => {
+  const notes = JSON.parse(await fs.readFile(path.join(__dirname, '../db/db.json'), 'utf-8'));
+  res.json(notes)
   });
   
 api.post('/notes', async (req, res) => {
@@ -20,11 +20,11 @@ api.post('/notes', async (req, res) => {
       id: uuidv4()
     }
 
-    const notes = await fs.readFile('./db/db.json', 'utf-8');
+    const notes = await fs.readFile(path.join(__dirname, '../db/db.json'), 'utf-8');
   
     const newNotes = [...JSON.parse(notes), newInput];
 
-    await fs.writeFile('./db/db.json', JSON.stringify(newNotes))
+    await fs.writeFile(path.join(__dirname, '../db/db.json'), JSON.stringify(newNotes))
     res.json(newNotes)
   } catch(err) {
     res.status(500).json({error: 'u_u something went wrong'})
