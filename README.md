@@ -40,8 +40,6 @@ THEN I am presented with empty fields to enter a new note title and the note’s
 
 While the requirements have been met, i would like to point out some issues:
 - when opening the 'notes' page, the placeholder for the text does not show 
-- the delete button does not work on the front end (you can delete notes on the backend as i have made an httpp delete method for it)
-- both of these are issues with the starter code 
 
 [deployed link](https://note-takerrrr-36143520f64a.herokuapp.com/)
 
